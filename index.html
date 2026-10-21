@@ -1,11 +1,734 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARK PROJECT</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arkhenomia Institute | Fundamental Mathematical Physics & Zero-Point Tensor Mechanics</title>
+  <meta name="description" content="Official academic portal of Arkhenomia Institute (Principal Investigator: Jung Soo Kim). Home of the 2026 Grand Unified Framework trilogy, Ark Tensor mechanics (H.U.G.G.E.R, TZT, Golden M0, NS-TZT), and Lean 4 formal verification archives." />
+  <meta name="author" content="Jung Soo Kim" />
+
+  <!-- Google Fonts for Academic Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #070b14;
+      --bg-secondary: #0d1424;
+      --bg-card: rgba(17, 25, 44, 0.78);
+      --border-subtle: rgba(148, 163, 184, 0.16);
+      --border-accent: rgba(212, 175, 55, 0.42);
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-gold: #d4af37;
+      --accent-gold-light: #f3e5ab;
+      --accent-teal: #14b8a6;
+      --accent-blue: #38bdf8;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+      --font-serif: 'Crimson Pro', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(20, 184, 166, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #070b14 0%, #0b1120 100%);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Language Toggle Visibility */
+    body[data-lang="en"] .lang-ko { display: none !important; }
+    body[data-lang="ko"] .lang-en { display: none !important; }
+
+    a {
+      color: var(--accent-gold-light);
+      text-decoration: none;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+    a:hover {
+      color: var(--accent-gold);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header / Navbar */
+    header {
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(7, 11, 20, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-emblem {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--accent-gold);
+      background: radial-gradient(circle, rgba(212,175,55,0.16) 0%, rgba(7,11,20,0.9) 100%);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+    }
+
+    .brand-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      background: rgba(20, 184, 166, 0.1);
+      border: 1px solid rgba(20, 184, 166, 0.35);
+      color: #5eead4;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #14b8a6;
+      box-shadow: 0 0 8px #14b8a6;
+    }
+
+    .lang-btn {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      padding: 0.38rem 0.8rem;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 4.5rem 0 3.2rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.1rem, 4.2vw, 3.25rem);
+      font-weight: 700;
+      line-height: 1.18;
+      margin-bottom: 1.25rem;
+      color: #ffffff;
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 860px;
+      margin-bottom: 2rem;
+    }
+
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      padding: 1rem 1.25rem;
+      background: rgba(13, 20, 36, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--accent-gold);
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      font-size: 0.88rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .meta-label {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+    }
+
+    .meta-value {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.72rem 1.3rem;
+      border-radius: 7px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d4af37 0%, #b5891c 100%);
+      color: #070b14;
+      border: none;
+    }
+    .btn-primary:hover {
+      color: #070b14;
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: rgba(17, 25, 44, 0.7);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold-light);
+      transform: translateY(-1px);
+    }
+
+    /* Section Styling */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Trilogy Grid */
+    .trilogy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+    }
+
+    .card-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .part-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.22rem 0.65rem;
+      border-radius: 4px;
+      background: rgba(212, 175, 55, 0.14);
+      color: var(--accent-gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .lean-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: #5eead4;
+      background: rgba(20, 184, 166, 0.1);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      border: 1px solid rgba(20, 184, 166, 0.25);
+    }
+
+    .card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.28rem;
+      line-height: 1.35;
+      margin-bottom: 0.85rem;
+      color: #ffffff;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+
+    .formula-box {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      background: rgba(7, 11, 20, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      padding: 0.7rem 0.85rem;
+      border-radius: 6px;
+      color: #e2e8f0;
+      overflow-x: auto;
+    }
+
+    /* Tensor Suite Strip */
+    .tensor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    .tensor-item {
+      background: rgba(13, 20, 36, 0.65);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.2rem;
+    }
+
+    .tensor-name {
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--accent-gold-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .tensor-desc {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+    }
+
+    /* Governance Box */
+    .gov-box {
+      background: rgba(13, 20, 36, 0.82);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 2rem;
+    }
+
+    .gov-box h3 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      margin-bottom: 0.85rem;
+      color: #ffffff;
+    }
+
+    .gov-box p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .gov-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.85rem;
+      margin-top: 1.2rem;
+    }
+
+    .gov-list li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      padding: 0.75rem 1rem;
+      background: rgba(7, 11, 20, 0.6);
+      border-left: 2px solid var(--accent-teal);
+      border-radius: 4px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding: 2.2rem 0;
+      background: #050810;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .footer-copy {
+      margin-bottom: 0.4rem;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 640px) {
+      .status-pill { display: none; }
+      .hero { padding: 3rem 0 2.2rem; }
+    }
+  </style>
 </head>
-<body>
-  ARK PROJECT
+<body data-lang="en">
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-emblem">A</div>
+        <div class="brand-text">
+          <span class="brand-title">ARKHENOMIA INSTITUTE</span>
+          <span class="brand-subtitle">
+            <span class="lang-en">Zero-Point Equilibrium &amp; Topological Tensor Mechanics</span>
+            <span class="lang-ko">아케노미아 인스티튜트 · 0점 평형 및 위상 텐서 역학 연구원</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>v1.5 Trilogy Archive Active</span>
+        </div>
+        <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">KO / 한국어</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero">
+      <div class="container">
+        <span class="hero-eyebrow">
+          <span class="lang-en">Official Academic &amp; Open-Science Portal (arkhenomia.org)</span>
+          <span class="lang-ko">공식 학술 및 오픈사이언스 포털 (arkhenomia.org)</span>
+        </span>
+
+        <h1 class="lang-en">
+          First Principles of Zero-Point Equilibrium,<br />
+          Topological Fluid Dynamics &amp; Formal Verification
+        </h1>
+        <h1 class="lang-ko">
+          0점 평형 다양체, 위상 유체역학 및<br />
+          기계화 형식 검증의 기초 수리물리 연구
+        </h1>
+
+        <p class="hero-lead lang-en">
+          <strong>Arkhenomia Institute</strong> (<span style="font-family: var(--font-serif); font-style: italic;">&#7936;&rho;&chi;&#942; + &nu;&#972;&mu;&omicron;&sigmaf;</span>) investigates the algebraic, geometric, and analytical laws governing macroscopic gravito-fluid systems, quasi-periodic Golden 3-torus ($\mathbb{T}^3_\phi$) manifolds, and vorticity-selective subgrid turbulence closures, backed by zero-axiom mechanized proofs in Lean 4.
+        </p>
+        <p class="hero-lead lang-ko">
+          <strong>아케노미아 인스티튜트(Arkhenomia Institute)</strong>는 거시적 중력-유체 동역학, 준주기 황금 3-토러스($\mathbb{T}^3_\phi$) 다양체 안정성, 그리고 미시적 와도 선택적 난류 소산 모델($\mathrm{NS}_{\mathrm{TZT}}$)을 관통하는 대통합 수리물리 이론과 Lean 4 기계화 형식 증명을 연구 및 공개합니다.
+        </p>
+
+        <div class="meta-bar">
+          <div class="meta-item">
+            <span class="meta-label">PRINCIPAL INVESTIGATOR:</span>
+            <span class="meta-value">Jung Soo Kim (김정수)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">ORCID:</span>
+            <span class="meta-value">
+              <a href="https://orcid.org/0009-0006-5140-0604" target="_blank" rel="noopener">0009-0006-5140-0604</a>
+            </span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">VERIFICATION STACK:</span>
+            <span class="meta-value">Lean 4 (v4.34.1, 0 sorry) &middot; SymPy CAS &middot; Spectral DNS/LES</span>
+          </div>
+        </div>
+
+        <div class="btn-group">
+          <a href="https://github.com/ark-zeropoint/archive" target="_blank" rel="noopener" class="btn btn-primary">
+            <span class="lang-en">Canonical Repository (GitHub) &rarr;</span>
+            <span class="lang-ko">공인 리포지토리 (GitHub) &rarr;</span>
+          </a>
+          <a href="https://huggingface.co/datasets/ark-zeropoint/archive" target="_blank" rel="noopener" class="btn btn-outline">
+            <span class="lang-en">Benchmark &amp; Dataset Archive (Hugging Face)</span>
+            <span class="lang-ko">데이터셋 아카이브 (Hugging Face)</span>
+          </a>
+          <a href="https://orcid.org/0009-0006-5140-0604" target="_blank" rel="noopener" class="btn btn-outline">
+            <span>ORCID Profile</span>
+          </a>
+          <a href="https://naver.me/5OlzNQ7Q" target="_blank" rel="noopener" class="btn btn-outline">
+            <span class="lang-en">Commercial Licensing Inquiry</span>
+            <span class="lang-ko">상용 라이선스 문의</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== THE 2026 GRAND UNIFIED FRAMEWORK TRILOGY ==================== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">2026 Flagship Monograph Series (v1.5)</span>
+          <h2 class="section-title lang-en">The Grand Unified Framework Trilogy</h2>
+          <h2 class="section-title lang-ko">2026 대통합 프레임워크 논문 삼부작 (Parts 1–3)</h2>
+        </div>
+
+        <div class="trilogy-grid">
+          <!-- Part 1 -->
+          <article class="card">
+            <div>
+              <div class="card-badge-row">
+                <span class="part-badge">PART 1 &middot; MACROSCOPIC CLOSURE</span>
+                <span class="lean-badge">Lean 4 Verified</span>
+              </div>
+              <h3 class="lang-en">Macroscopic Gravity-Fluid Dynamics &amp; 0-Point Equilibrium Operation</h3>
+              <h3 class="lang-ko">거시적 중력-유체 동역학 및 0점 평형 운용을 위한 대통합 프레임워크</h3>
+              <p class="lang-en">
+                Formulates the coupled H.U.G.G.E.R and Topological Zero Tensor (TZT) equations on a closed 3-torus ($\mathbb{T}^3$, $\chi(\mathbb{T}^3)=0$), routing supercritical strain spikes through a solenoidal vertical intake axis into smooth toroidal circulation.
+              </p>
+              <p class="lang-ko">
+                닫힌 3차원 토러스($\mathbb{T}^3$, $\chi(\mathbb{T}^3)=0$) 위에서 H.U.G.G.E.R 텐서와 위상적 영 텐서(TZT)의 결합 방정식을 정립하고, 초임계 변형률 스파이크를 솔레노이달 수직 흡입 축($\mathcal{X}_\mu$)을 통해 매끄러운 토러스 순환으로 우회시킵니다.
+              </p>
+            </div>
+            <div class="formula-box">
+              &part;<sub>&mu;</sub>(T<sup>&mu;&nu;</sup> + &Phi;<sup>&mu;&nu;</sup> + Z<sup>&mu;&nu;</sup>) = 0, &nbsp; &chi;(T<sup>3</sup>) = 0
+            </div>
+          </article>
+
+          <!-- Part 2 -->
+          <article class="card">
+            <div>
+              <div class="card-badge-row">
+                <span class="part-badge">PART 2 &middot; GOLDEN 3-TORUS</span>
+                <span class="lean-badge">Lean 4 Verified</span>
+              </div>
+              <h3 class="lang-en">The Golden M<sub>0</sub> Tensor Mechanics &amp; Quasi-Periodic 3-Torus (T<sup>3</sup><sub>&phi;</sub>) Stability</h3>
+              <h3 class="lang-ko">황금 M<sub>0</sub> 텐서 역학과 준주기 3-토러스(T<sup>3</sup><sub>&phi;</sub>) 안정성 및 공명 붕괴 해결</h3>
+              <p class="lang-en">
+                Resolves small-divisor resonance collapse via Pisot&ndash;Vijayaraghavan Galois duality ($|\bar{\phi}| = \phi^{-1} &lt; 1$) over the Golden Integer ring $\mathbb{Z}[\phi]$, proving exponential Lyapunov convergence ($\Sigma(u) \to 0$), homological invariance, and Aharonov&ndash;Bohm holonomy lock.
+              </p>
+              <p class="lang-ko">
+                황금 정수환 $\mathbb{Z}[\phi]$의 피소-비자야라가반 갈루아 쌍대성($|\bar{\phi}|=\phi^{-1}&lt;1$)과 KAM 디오판토스 하한을 통해 공명 붕괴를 원천 제거하고, 리아푸노프 지수 수렴($\Sigma(u)\to 0$)과 호몰로지 보존 및 아하로노프-봄 위상 동기화를 증명합니다.
+              </p>
+            </div>
+            <div class="formula-box">
+              |k &middot; &omega;<sub>&phi;</sub>| &ge; &gamma;<sub>&phi;</sub>|k|<sup>&minus;&tau;</sup>, &nbsp; &Sigma;(u(t)) &le; &Sigma;(u<sub>0</sub>)e<sup>&minus;2&alpha;<sub>&phi;</sub>t</sup> &rarr; 0
+            </div>
+          </article>
+
+          <!-- Part 3 -->
+          <article class="card">
+            <div>
+              <div class="card-badge-row">
+                <span class="part-badge">PART 3 &middot; MICROSCOPIC PDE &amp; LES</span>
+                <span class="lean-badge">Lean 4 Verified</span>
+              </div>
+              <h3 class="lang-en">A Vorticity-Selective Dissipative Model (NS<sub>TZT</sub>) for Incompressible Flows</h3>
+              <h3 class="lang-ko">비압축성 유동을 위한 와도 선택적 소산 모델(NS<sub>TZT</sub>) 및 대역적 강한 정칙성</h3>
+              <p class="lang-en">
+                Proves unconditional global strong well-posedness in $H^1_\sigma(\mathbb{T}^3)$ at fixed filter scale $\ell &gt; 0$ via a Gr&ouml;nwall-free Calder&oacute;n&ndash;Zygmund cubic $L^3$ balance, suppressing $80.84\%$ of artificial laminar over-damping in $\mathrm{Re}=1600$ Taylor&ndash;Green vortex benchmarks.
+              </p>
+              <p class="lang-ko">
+                고정 필터 스케일 $\ell &gt; 0$에서 칼데론-지그문트 3차 스케일링 균형과 볼록 포텐셜 회전 소산($F_{\mathrm{diss}}$)을 통해 무-그륀발 전역 강한 정칙성을 증명하며, $\mathrm{Re}=1600$ 테일러-그린 와류에서 초기 층류 과소산을 $80.84\%$ 억제합니다.
+              </p>
+            </div>
+            <div class="formula-box">
+              F<sub>diss</sub> = &minus;&nabla; &times; &nabla;<sub>&omega;</sub>&Psi;(|&omega;|), &nbsp; &langle;F<sub>axis</sub>, u&rangle; = 0
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ARK TENSOR SUITE ==================== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Core Mathematical Operators</span>
+          <h2 class="section-title lang-en">The Ark Tensor Suite</h2>
+          <h2 class="section-title lang-ko">아크 텐서 (Ark Tensor) 핵심 연산자 체계</h2>
+        </div>
+
+        <div class="tensor-grid">
+          <div class="tensor-item">
+            <div class="tensor-name">1. H.U.G.G.E.R Tensor (&Phi;<sub>&mu;&nu;</sub>)</div>
+            <p class="tensor-desc lang-en">Macroscopic gravito-fluid ambient coupling tensor regulating multi-layered planetary boundary momentum transfer.</p>
+            <p class="tensor-desc lang-ko">다층 행성 경계면의 운동량 전달과 거시적 중력-유체 결합을 조율하는 배경장 텐서.</p>
+          </div>
+          <div class="tensor-item">
+            <div class="tensor-name">2. Topological Zero Tensor (Z<sup>&mu;</sup><sub>&nu;</sub>)</div>
+            <p class="tensor-desc lang-en">Counter-strain bypass operator converting supercritical singular compression into divergence-free toroidal circulation.</p>
+            <p class="tensor-desc lang-ko">초임계 압축 특이점을 무발산 토러스 순환 궤도로 우회시키는 위상적 영 텐서.</p>
+          </div>
+          <div class="tensor-item">
+            <div class="tensor-name">3. Golden M<sub>0</sub> Tensor (M<sub>0</sub><sup>&mu;</sup><sub>&nu;</sub>)</div>
+            <p class="tensor-desc lang-en">Idempotent Pisot Galois projection operator on $\mathbb{T}^3_\phi$ contracting resonant fluctuations onto the 0-point attractor $\mathcal{E}_0$.</p>
+            <p class="tensor-desc lang-ko">준주기 황금 3-토러스 위에서 공명 섭동을 0점 평형 끌개($\mathcal{E}_0$)로 수축시키는 피소 투영 텐서.</p>
+          </div>
+          <div class="tensor-item">
+            <div class="tensor-name">4. NS-TZT Operator (NS<sub>TZT</sub>)</div>
+            <p class="tensor-desc lang-en">Vorticity-selective cubic rotational dissipation and energy-neutral gyroscopic alignment closure for 3D turbulence.</p>
+            <p class="tensor-desc lang-ko">층류 전단류를 보호하고 초임계 와도 핵만을 선택적으로 정칙화하는 미시 난류 종결 연산자.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== LICENSING & GOVERNANCE ==================== -->
+    <section>
+      <div class="container">
+        <div class="gov-box">
+          <span class="section-tag">Intellectual Property &amp; Open Science Compliance</span>
+          <h3 class="lang-en">Licensing, Prior Art Status &amp; Commercial Governance</h3>
+          <h3 class="lang-ko">저작권 라이선스(CC BY-NC 4.0), 선행기술 지위 및 상용 거버넌스 고지</h3>
+
+          <p class="lang-en">
+            All manuscripts, mechanized Lean 4 formal proof scripts (<code>.lean</code>), symbolic CAS codes (<code>.py</code>), numerical solvers, and benchmark datasets published by <strong>Arkhenomia Institute</strong> (Author: <strong>Jung Soo Kim</strong>, <a href="https://orcid.org/0009-0006-5140-0604" target="_blank" rel="noopener">ORCID: 0009-0006-5140-0604</a>) are licensed under the unmodified <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"><strong>Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)</strong></a>.
+          </p>
+          <p class="lang-ko">
+            <strong>아케노미아 인스티튜트(Arkhenomia Institute)</strong>(저작자: <strong>김정수, Jung Soo Kim</strong>, <a href="https://orcid.org/0009-0006-5140-0604" target="_blank" rel="noopener">ORCID: 0009-0006-5140-0604</a>)가 공개하는 모든 논문 원고, Lean 4 기계화 형식 증명 스크립트(<code>.lean</code>), 기호 연산 코드(<code>.py</code>), 수치 솔버 및 벤치마크 데이터셋은 수정 없는 국제 표준 <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"><strong>크리에이티브 커먼즈 저작자표시-비영리 4.0 국제 라이선스(CC BY-NC 4.0)</strong></a>에 따라 제공됩니다.
+          </p>
+
+          <ul class="gov-list">
+            <li>
+              <strong class="lang-en">Academic &amp; Open Research Safe Harbor:</strong>
+              <strong class="lang-ko">비영리 학술 연구의 자유:</strong><br />
+              <span class="lang-en">Non-commercial academic research, educational use, and independent verification are freely permitted with proper attribution and primary reference citation.</span>
+              <span class="lang-ko">적절한 출처 표시 및 1차 참고문헌 인용을 전제로 대학·연구기관·독립 연구자의 비영리 학술 연구 및 검증은 자유롭게 허용됩니다.</span>
+            </li>
+            <li>
+              <strong class="lang-en">Commercial Restriction (NC):</strong>
+              <strong class="lang-ko">상업적 사용 제한 및 별도 계약:</strong><br />
+              <span class="lang-en">Any commercial reproduction, internal enterprise deployment, derivative code porting, or proprietary AI model distillation requires a prior written commercial license agreement.</span>
+              <span class="lang-ko">원저작자와의 사전 서면 상용 라이선스 계약 없는 상업적 복제, 사내 서버 구동, 타 언어 커널 포팅 및 독점 AI 지식 증류는 엄격히 금지됩니다.</span>
+            </li>
+            <li>
+              <strong class="lang-en">Published Prior Art Protection:</strong>
+              <strong class="lang-ko">공지된 선행기술(Prior Art) 특허 방어:</strong><br />
+              <span class="lang-en">All mathematical equations and tensor architectures disclosed herein constitute published Prior Art under global patent laws against third-party patent appropriation.</span>
+              <span class="lang-ko">공개된 모든 수학 방정식과 텐서 아키텍처는 전 세계 특허법상 공지된 선행기술을 구성하여 제3자의 무단 특허 독점을 원천 차단합니다.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <p class="footer-copy">
+        &copy; 2026 Jung Soo Kim (Arkhenomia Institute). Licensed under Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).
+      </p>
+      <p>
+        Canonical Portal: <a href="https://arkhenomia.org">https://arkhenomia.org</a> &nbsp;|&nbsp;
+        GitHub: <a href="https://github.com/ark-zeropoint/archive" target="_blank" rel="noopener">github.com/ark-zeropoint/archive</a> &nbsp;|&nbsp;
+        Hugging Face: <a href="https://huggingface.co/datasets/ark-zeropoint/archive" target="_blank" rel="noopener">huggingface.co/datasets/ark-zeropoint/archive</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleLanguage() {
+      const body = document.body;
+      const btn = document.getElementById('langToggle');
+      if (body.getAttribute('data-lang') === 'en') {
+        body.setAttribute('data-lang', 'ko');
+        btn.textContent = 'EN / English';
+      } else {
+        body.setAttribute('data-lang', 'en');
+        btn.textContent = 'KO / 한국어';
+      }
+    }
+  </script>
 </body>
 </html>

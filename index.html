@@ -236,7 +236,7 @@
       <section>
         <h2>Institute Overview</h2>
         <p>
-          <strong>Arkhenomia Institute</strong> (<a href="https://arkhenomia.org" style="color:inherit;">arkhenomia.org</a>) is an independent research institute dedicated to the rigorous mathematical formulation and computer-assisted formal verification of multi-scale continuum mechanics, topological fluid dynamics, and zero-point equilibrium systems. All foundational theories, symbolic Computer Algebra System (SymPy) derivations, and mechanized <strong>Lean&nbsp;4</strong> proof suites (<code style="font-size:0.88em;">0 sorry</code>, zero custom axioms) are published as open academic prior art under the Creative Commons Attribution-NonCommercial 4.0 International License (<code style="font-size:0.88em;">CC BY-NC 4.0</code>).
+          <strong>Arkhenomia Institute</strong> (<a href="https://arkhenomia.org" style="color:inherit;">arkhenomia.org</a>) is an independent research institute dedicated to the mathematical formulation and computer-assisted formal verification of multi-scale continuum mechanics, topological fluid dynamics, and zero-point equilibrium systems. All foundational theories, symbolic derivations, and mechanized <strong>Lean&nbsp;4</strong> proof suites (<code style="font-size:0.88em;">0 sorry</code>, zero custom axioms) are published as open academic prior art under the Creative Commons Attribution-NonCommercial 4.0 International License (<code style="font-size:0.88em;">CC BY-NC 4.0</code>).
         </p>
       </section>
 
@@ -250,9 +250,8 @@
             </div>
             <div class="paper-authors">Jung Soo Kim &middot; Arkhenomia Institute (2026, v1.5 Canonical Release)</div>
             <div class="math-hint">
-              <span class="label">Core Signature</span>
+              <span class="label">Topological Invariant</span>
               <span class="sym">Z</span><sup><span class="sym">&mu;</span></sup><sub><span class="sym">&nu;</span></sub> &equiv; 0, &emsp;
-              &nabla; &middot; <span class="sym">X</span> = 0, &emsp;
               <span class="sym">&chi;</span>(<span class="bb">&#x1D54B;</span><sup>3</sup>) = 0, &emsp;
               &part;<span class="bb">&#x1D54B;</span><sup>3</sup> = &empty;
             </div>
@@ -265,11 +264,10 @@
             </div>
             <div class="paper-authors">Jung Soo Kim &middot; Arkhenomia Institute (2026, v1.5 Canonical Release)</div>
             <div class="math-hint">
-              <span class="label">Core Signature</span>
+              <span class="label">Algebraic Attractor</span>
               <span class="bb">&#x2124;</span>[<span class="sym">&phi;</span>], &emsp;
-              |<span class="sym">&phi;&#x0304;</span>| = <span class="sym">&phi;</span><sup>&minus;1</sup> &lt; 1, &emsp;
-              &Sigma;(<strong>u</strong>(<span class="sym">t</span>)) = &frac12;&thinsp;dist<sub><span class="sym">H</span></sub><sup>2</sup>(<strong>u</strong>(<span class="sym">t</span>), <span class="sym">E</span><sub>0</sub>) &rarr; 0, &emsp;
-              &Delta;<span class="sym">&theta;</span><sub><span class="sym">k</span></sub> = 2&pi;<span class="sym">&phi;</span><sup>&minus;<span class="sym">k</span></sup>
+              |<span class="sym">&phi;&#x0304;</span>| &lt; 1, &emsp;
+              &Sigma;(<strong>u</strong>(<span class="sym">t</span>)) &rarr; 0 &ensp;(<span class="sym">t</span> &rarr; &infin;)
             </div>
           </li>
 
@@ -280,9 +278,8 @@
             </div>
             <div class="paper-authors">Jung Soo Kim &middot; Arkhenomia Institute (2026, v1.5 Canonical Release)</div>
             <div class="math-hint">
-              <span class="label">Core Signature</span>
-              <span class="sym">&nu;</span><sub>TZT</sub>(|<strong>&omega;</strong>|) = <span class="sym">C<sub>O</sub>&thinsp;&ell;</span><sup>2</sup>|<strong>&omega;</strong>|&thinsp;&Phi;(|<strong>&omega;</strong>|/&Omega;<sub><span class="sym">c</span></sub>), &emsp;
-              &lang;<span class="sym">F</span><sub>axis</sub>, <strong>u</strong>&rang; = 0, &emsp;
+              <span class="label">Regularity Closure</span>
+              <strong>u</strong> &in; <span class="sym">C</span>([0, <span class="sym">T</span>]; <span class="sym">H</span><sup>1</sup><sub>&sigma;</sub>(<span class="bb">&#x1D54B;</span><sup>3</sup>)), &emsp;
               &Vert;<strong>&omega;</strong>(<span class="sym">t</span>)&Vert;<sub><span class="sym">L</span><sup>2</sup></sub><sup>2</sup> &lt; &infin; &ensp;(<span class="sym">&ell;</span> &gt; 0)
             </div>
           </li>
@@ -292,8 +289,8 @@
       <section>
         <h2>Foundational Monographs (Pre-Series Archive)</h2>
         <ul class="mono-list">
-          <li><span class="vol">Monograph I</span> Macroscopic Gravity and Unit-Quaternion (<span class="sym">q</span><sub>c</sub>) Hydrostatic Stress Closure (H.U.G.G.E.R v1.0)</li>
-          <li><span class="vol">Monograph II</span> Compressible Atmospheric (v1.1) and Incompressible Oceanic (v1.2) Non-Linear Drag Suppression (<span class="sym">D<sub>&kappa;</sub></span>)</li>
+          <li><span class="vol">Monograph I</span> Macroscopic Gravity and Unit-Quaternion Hydrostatic Stress Closure (H.U.G.G.E.R v1.0)</li>
+          <li><span class="vol">Monograph II</span> Compressible Atmospheric (v1.1) and Incompressible Oceanic (v1.2) Non-Linear Drag Suppression</li>
           <li><span class="vol">Monograph III</span> Covariant Architecture of the Topological Zero Tensor (TZT) on Riemann&ndash;Cartan Manifolds</li>
         </ul>
       </section>
@@ -301,7 +298,7 @@
       <section>
         <h2>Licensing &amp; Dual-Entity Governance</h2>
         <div class="governance-box">
-          All academic manuscripts, formal Lean&nbsp;4 proofs, symbolic CAS scripts, and benchmark datasets published by <strong>Arkhenomia Institute</strong> are licensed under <strong>CC BY-NC 4.0</strong> for non-commercial academic research and educational verification. Commercial licensing, enterprise R&amp;D deployment, AI surrogate/distillation rights, and applied kernel implementations (<strong>ZINN</strong> / <strong>Ark-ZPF</strong>) are administered exclusively by <a href="https://arkhenetics.com">Arkhenetics</a> (<a href="https://arkhenetics.com">arkhenetics.com</a>) under the latest canonical <code style="font-size:0.88em;">LICENSE.txt</code> (Policy v2.2.0+).
+          All academic manuscripts, formal Lean&nbsp;4 proofs, symbolic CAS scripts, and benchmark datasets published by <strong>Arkhenomia Institute</strong> are licensed under <strong>CC BY-NC 4.0</strong> for non-commercial academic research and educational verification. Commercial licensing, enterprise R&amp;D deployment, AI surrogate/distillation rights, and proprietary kernel implementations (<strong>ZINN</strong> / <strong>Ark-ZPF</strong>) are administered exclusively by <a href="https://arkhenetics.com">Arkhenetics</a> (<a href="https://arkhenetics.com">arkhenetics.com</a>) under the latest canonical <code style="font-size:0.88em;">LICENSE.txt</code> (Policy v2.2.0+).
         </div>
       </section>
     </main>
